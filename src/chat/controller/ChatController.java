@@ -9,5 +9,6 @@ public class ChatController
 	
 	public void start() {
 		display = new PopupDisplay();
+		display.collectResponse("hu");
 	}
 }
