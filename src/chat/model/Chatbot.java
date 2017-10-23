@@ -61,16 +61,15 @@ public class Chatbot
 	
 	public boolean lengthChecker(String input)
 	{
-		boolean ifLongEnough = false;
+		boolean longEnough = false;
 		
-		if(input != null && !input.isEmpty()) {
-			if(input.length() > 2) {
-				ifLongEnough = true;
-			}
+		if(input != null && input.length() > 2) {
+			longEnough = true;
 		}
 		
 		
-		return ifLongEnough;
+		
+		return longEnough;
 	}
 	
 	public boolean htmlTagChecker(String input)
