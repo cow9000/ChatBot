@@ -3,6 +3,7 @@ package chat.model;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Chatbot
 {
@@ -20,38 +21,84 @@ public class Chatbot
 	
 	public Chatbot(String username)
 	{
-		this.movieList = null;
-		this.shoppingList = null;
-		this.cuteAnimalMemes = null;
-		this.currentTime = null;
-		this.questions = null;
-		this.username = null;
-		this.content = null;
-		this.intro = null;
-		this.currentTime = null;
-		this.topics = null;
-		this.verbs = null;
-		this.followUps = null;
+		this.movieList = new ArrayList<Movie>();
+		this.shoppingList = new ArrayList<String>();
+		this.cuteAnimalMemes = new ArrayList<String>();
+		this.currentTime = LocalTime.now();
+		this.questions = new String[10];
+		this.username = username;
+		this.content = "";
+		this.intro = "";
+		this.topics = new String[4];
+		this.verbs = new String[4];
+		this.followUps = new String[5];
+		
+		buildVerbs();
+		buildMovieList();
+		buildShoppingList();
+		buildCuteAnimals();
+		buildQuestions();
+		
 	}
+	
+	public String toString() {
+		String response = "YOU ARE A CHICKEN";
+		return response;
+	}
+	
+	private void buildVerbs() {
+		verbs[0] = "like";
+		verbs[1] = "dislike";
+		verbs[2] = "am ambivalent about";
+		verbs[3] = "am thinking about";
+	}
+	
 
 	private void buildMovieList()
 	{
-		
+		movieList.add(new Movie("Lord Of The Rings"));
+		movieList.add(new Movie("Lord Of The Rings"));
+		movieList.add(new Movie("Lord Of The Rings"));
+		movieList.add(new Movie("Lord Of The Rings"));
+		movieList.add(new Movie("Lord Of The Rings"));
 	}
 	
 	private void buildShoppingList()
 	{
-		
+		shoppingList.add("snacks");
+		shoppingList.add("veggies");
+		shoppingList.add("protein");
+		shoppingList.add("garbage");
+		shoppingList.add("CHOCOLATE");
+		shoppingList.add("Tuna");
+		shoppingList.add("garbage");
+		shoppingList.add("monkies");
+		shoppingList.add("pizza");
+		shoppingList.add("money");
+		shoppingList.add("ham");
+		shoppingList.add("turkey");
 	}
 	
 	private void buildCuteAnimals()
 	{
-		
+		cuteAnimalMemes.add("pupper");
+		cuteAnimalMemes.add("otter");
+		cuteAnimalMemes.add("kittie");
 	}
 	
 	private void buildQuestions()
 	{
-		
+		questions[0] = "Whats your name?";
+		questions[1] = "What do you do?";
+		questions[2] = "You know English?";
+		questions[3] = "Do you eat food?";
+		questions[4] = "What's your favorite food?";
+		questions[5] = "Monkey or Dogeroni?";
+		questions[6] = "Llama of Camel?";
+		questions[7] = "Do you like me?";
+		questions[8] = "This is a sentence?";
+		questions[9] = "This isn't a sentence?";
+
 	}
 	
 	public String processConversation(String input)
@@ -74,12 +121,39 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		return false;
+		
+		boolean isHTML = false;
+		
+		
+		
+		
+		return isHTML;
 	}
 	
 	public boolean userNameChecker(String input)
 	{
-		return false;
+		boolean response = false;
+		if(input != null) {
+			if(input.startsWith("@")) {
+				response = true;
+				int count = 0;
+				char symbol = '@';
+				for(int i = 0; i < input.length(); i++) {
+					
+					if(input.charAt(i) == symbol) {
+						count+=1;
+					}
+				}
+				
+				if(count > 1) {
+					System.out.print(count);
+					response = false;
+				}
+				
+				
+			}
+		}
+		return response;
 	}
 	
 	public boolean contentChecker(String contentCheck)
