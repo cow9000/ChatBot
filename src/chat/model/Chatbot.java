@@ -39,6 +39,8 @@ public class Chatbot
 		buildCuteAnimals();
 		buildQuestions();
 		
+		
+		
 	}
 	
 	public String toString() {
@@ -56,6 +58,8 @@ public class Chatbot
 
 	private void buildMovieList()
 	{
+		movieList.add(new Movie("Lord Of The Rings"));
+		movieList.add(new Movie("Lord Of The Rings"));
 		movieList.add(new Movie("Lord Of The Rings"));
 		movieList.add(new Movie("Lord Of The Rings"));
 		movieList.add(new Movie("Lord Of The Rings"));
@@ -84,6 +88,7 @@ public class Chatbot
 		cuteAnimalMemes.add("pupper");
 		cuteAnimalMemes.add("otter");
 		cuteAnimalMemes.add("kittie");
+		cuteAnimalMemes.add("floofer");
 	}
 	
 	private void buildQuestions()
@@ -158,37 +163,73 @@ public class Chatbot
 	
 	public boolean contentChecker(String contentCheck)
 	{
-		return false;
+		boolean response = false;
+		
+		return response;
 	}
 	
 	public boolean cuteAnimalMemeChecker(String input)
 	{
-		return false;
+		boolean response = false;
+		for(String meme : cuteAnimalMemes) {
+			if(meme.equalsIgnoreCase(input)) {
+				response = true;
+			}
+		}
+		return response;
 	}
 	
 	public boolean shoppingListChecker(String shoppingItem)
 	{
-		return false;
+		boolean response = false;
+		if(!shoppingItem.equalsIgnoreCase("slug bait")) {
+			response = true;
+		}
+		return response;
 	}
 	
 	public boolean movieTitleChecker(String title)
 	{
-		return false;
+		boolean response = false;
+		if(title != null) {
+			if(!title.equals("")) {
+				if((title.length() > 0)) {
+					response = true;
+				}
+			}
+		}
+		return response;
 	}
 	
 	public boolean movieGenreChecker(String genre)
 	{
-		return false;
+		boolean response = false;
+		if(genre != null) {
+			if(!genre.equals("")) {
+				if((genre.length() > 0)) {
+					response = true;
+				}
+			}
+		}
+		return response;
 	}
 
 	public boolean quitChecker(String exitString)
 	{
-		return false;
+		boolean response = false;
+		if(exitString != null) {
+			if(exitString.equalsIgnoreCase("quit")) {
+				response = true;
+			}
+		}
+		return response;
 	}
 
 	public boolean keyboardMashChecker(String sample)
 	{
-		return false;
+		boolean response = false;
+		
+		return response;
 	}
 	
 	public List<Movie> getMovieList()
@@ -208,7 +249,7 @@ public class Chatbot
 
 	public String [] getQuestions()
 	{
-		return null;
+		return questions;
 	}
 	
 	public String[] getVerbs()
@@ -238,12 +279,13 @@ public class Chatbot
 
 	public String getIntro()
 	{
-		return null;
+		return intro;
 	}
 	
 	public LocalTime getCurrentTime()
 	{
-		return null;
+		currentTime = LocalTime.now();
+		return currentTime;
 	}
 	
 	public void setUsername(String username)

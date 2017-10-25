@@ -13,23 +13,27 @@ public class ChatFrame extends JFrame
 	ChatbotController baseController;
 	ChatPanel panel;
 	
+	
 	public ChatFrame(ChatbotController chatbotController)
 	{
 		this.baseController = chatbotController;
+		this.panel = new ChatPanel(chatbotController);
+
+		setSettings();
+	}
+	
+	private void setSettings() {
+		this.setContentPane(panel);
 		
-		panel = new ChatPanel(chatbotController);
-		add(panel);
-		pack();
+		this.setTitle("Chatbot");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setTitle("Chatbot");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setMinimumSize(getSize());
+		this.setSize(getPreferredSize());
 		
-		setMinimumSize(getSize());
-		setSize(getPreferredSize());
+		this.setResizable(false);
 		
-		
-		setVisible(true);
-		
+		this.setVisible(true);
 	}
 
 	
