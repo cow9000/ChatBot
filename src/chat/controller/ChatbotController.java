@@ -13,7 +13,7 @@ public class ChatbotController
 	public void start() {
 		display = new PopupDisplay();
 		chatbot = new Chatbot("username goes here");
-		frame = new ChatFrame(this);
+		//frame = new ChatFrame(this);
 	}
 
 	public String interactWithChatbot(String string)

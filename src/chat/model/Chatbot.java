@@ -34,10 +34,14 @@ public class Chatbot
 		this.followUps = new String[5];
 		
 		buildVerbs();
-		buildMovieList();
-		buildShoppingList();
-		buildCuteAnimals();
+		buildTopics();
+		buildFollowups();
 		buildQuestions();
+		buildShoppingList();
+		
+		buildMovieList();
+		
+		buildCuteAnimals();
 		
 		
 		
@@ -55,6 +59,20 @@ public class Chatbot
 		verbs[3] = "am thinking about";
 	}
 	
+	public void buildTopics() {
+		topics[0] = "";
+		topics[1] = "";
+		topics[2] = "";
+		topics[3] = "";
+	}
+	
+	public void buildFollowups() {
+		followUps[0] = "";
+		followUps[1] = "";
+		followUps[2] = "";
+		followUps[3] = "";
+		followUps[4] = "";
+	}
 
 	private void buildMovieList()
 	{
@@ -99,16 +117,38 @@ public class Chatbot
 		questions[3] = "Do you eat food?";
 		questions[4] = "What's your favorite food?";
 		questions[5] = "Monkey or Dogeroni?";
-		questions[6] = "Llama of Camel?";
+		questions[6] = "Llama or Camel?";
 		questions[7] = "Do you like me?";
 		questions[8] = "This is a sentence?";
 		questions[9] = "This isn't a sentence?";
 
 	}
 	
+	private String buildChatbotResponse() {
+		String response = "I ";
+		
+		int random = (int) (Math.random() * verbs.length);
+		
+		response += verbs[random];
+		
+		random = (int) (Math.random() * topics.length);
+		
+		response += " " + topics[random] + ".\n";
+		
+		random = (int) (Math.random() * questions.length);
+		response += questions[random];
+		
+		return response;
+	}
+	
 	public String processConversation(String input)
 	{
-		return null;
+		String chatbotResponse = "";
+		chatbotResponse += "You said:" + "\n" + input + "\n";
+		
+		chatbotResponse += buildChatbotResponse();
+		
+		return chatbotResponse;
 	}
 	
 	public boolean lengthChecker(String input)
