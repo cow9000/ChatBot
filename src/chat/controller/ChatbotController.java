@@ -8,12 +8,21 @@ public class ChatbotController
 {
 	Chatbot chatbot;
 	PopupDisplay display;
-	ChatFrame frame;
+	ChatFrame appFrame;
 	
-	public void start() {
+	public ChatbotController(){
 		display = new PopupDisplay();
 		chatbot = new Chatbot("username goes here");
-		//frame = new ChatFrame(this);
+	}
+	
+	public void start() {
+		String response = display.collectResponse("What do you want to talk about?");
+		
+		while(chatbot.lengthChecker(response) && !chatbot.quitChecker(response)) {
+			response = popupChat(response);
+			response = display.collectResponse(response);
+		}
+		
 	}
 
 	public String interactWithChatbot(String string)
@@ -22,6 +31,13 @@ public class ChatbotController
 		
 		return message;
 	}
+	
+	private String popupChat(String chat) {
+		String chatbotSays = "";
+		chatbotSays += chatbot.processConversation(chat);
+		return chatbotSays;
+	}
+	
 
 	public Chatbot getChatbot()
 	{
@@ -34,6 +50,6 @@ public class ChatbotController
 	
 	public ChatFrame getChatFrame()
 	{
-		return frame;
+		return appFrame;
 	}
 }

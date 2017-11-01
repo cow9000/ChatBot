@@ -60,10 +60,10 @@ public class Chatbot
 	}
 	
 	public void buildTopics() {
-		topics[0] = "";
-		topics[1] = "";
-		topics[2] = "";
-		topics[3] = "";
+		topics[0] = "John Cena";
+		topics[1] = "Harry Potter";
+		topics[2] = "Donald Trump";
+		topics[3] = "Tuna";
 	}
 	
 	public void buildFollowups() {
@@ -119,8 +119,8 @@ public class Chatbot
 		questions[5] = "Monkey or Dogeroni?";
 		questions[6] = "Llama or Camel?";
 		questions[7] = "Do you like me?";
-		questions[8] = "This is a sentence?";
-		questions[9] = "This isn't a sentence?";
+		questions[8] = "Who are you?";
+		questions[9] = "What is wrong with you?";
 
 	}
 	
@@ -268,6 +268,35 @@ public class Chatbot
 	public boolean keyboardMashChecker(String sample)
 	{
 		boolean response = false;
+		
+		String keyMash = "qwertyuiop[]\\asdfghjkl;'zxcvbnm,./";
+		
+		
+		if(sample.length() < 4) {
+			
+			for(int i = 0; i < keyMash.length(); i++) {
+				String keyMashType = Character.toString(keyMash.charAt(i));
+				
+				
+				if(keyMashType.equalsIgnoreCase(Character.toString(sample.charAt(0)))) {
+					
+					if(Character.toString(sample.charAt(1)).equalsIgnoreCase(Character.toString(keyMash.charAt(i+1)))) {
+						if(Character.toString(sample.charAt(2)).equalsIgnoreCase(Character.toString(keyMash.charAt(i+2)))) {
+							response = true;
+						}
+					}
+					else if(Character.toString(sample.charAt(1)).equalsIgnoreCase(Character.toString(keyMash.charAt(i-1)))) {
+						if(Character.toString(sample.charAt(2)).equalsIgnoreCase(Character.toString(keyMash.charAt(i-2)))) {
+							response = true;
+						}
+					}
+					
+					
+					
+				}
+			}
+		
+		}
 		
 		return response;
 	}

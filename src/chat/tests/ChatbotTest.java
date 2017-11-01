@@ -167,9 +167,8 @@ public class ChatbotTest
 			if (cute.toLowerCase().contains("otter"))
 			{
 				otterCount += 1;
-			}
-			//There was an error here, was toUpperCase
-			if (cute.toLowerCase().contains("floofer"))
+			} 
+			if (cute.toUpperCase().contains("FLOOFER"))
 			{
 				flooferCount += 1;
 			}
@@ -222,6 +221,8 @@ public class ChatbotTest
 	@Test
 	public void testKeyboardMashChecker()
 	{
+		
+		
 		assertFalse("Mash incorrectly detected", testedChatbot.keyboardMashChecker("S.D.F."));
 		assertFalse("Mash incorrectly detected", testedChatbot.keyboardMashChecker("derf"));
 		assertTrue("Keyboard mashing not detected", testedChatbot.keyboardMashChecker("sdf"));
