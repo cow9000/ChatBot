@@ -1,10 +1,7 @@
 package chat.view;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
 
@@ -17,20 +14,14 @@ public class ChatPanel extends JPanel
 	
 	JButton sendText;
 	JTextArea displayTextArea;
+	SpringLayout layout;
 	
 	public ChatPanel(ChatbotController chatbotController)
 	{
 		this.baseController = chatbotController;
-		
-		this.setLayout(new SpringLayout());
-		
-		sendText = new JButton();
-		sendText.setText("Send Message");
-		
-		
-		displayTextArea = new JTextArea("Chatbot");
-		displayTextArea.setEditable(false);
-		displayTextArea.setCaretPosition(displayTextArea.getDocument().getLength());
+		this.layout = new SpringLayout();
+		this.setLayout(layout);
+	
 		
 		
 		addComponents();
@@ -38,8 +29,23 @@ public class ChatPanel extends JPanel
 	
 	private void addComponents() {
 		
+		sendText = new JButton();
+		sendText.setText("Send Message");
+		
+		
+		
+		displayTextArea = new JTextArea("Chatbot");
+		displayTextArea.setEditable(false);
+		displayTextArea.setCaretPosition(displayTextArea.getDocument().getLength());
+		
+		
+		
+		
+		
+		
 		this.add(displayTextArea);
 		this.add(sendText);
+		
 	}
 
 }

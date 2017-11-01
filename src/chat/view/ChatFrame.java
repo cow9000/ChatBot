@@ -1,7 +1,7 @@
 package chat.view;
 
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
-import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
@@ -32,8 +32,13 @@ public class ChatFrame extends JFrame
 		this.setSize(getPreferredSize());
 		
 		this.setResizable(false);
-		
+		this.applyComponentOrientation(
+			    ComponentOrientation.getOrientation(
+			            panel.getLocale()));
 		this.setVisible(true);
+		
+		
+		pack();
 	}
 
 	
