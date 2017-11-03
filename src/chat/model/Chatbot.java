@@ -14,6 +14,7 @@ public class Chatbot
 	private String [] topics;
 	private String [] followUps;
 	private String [] questions;
+	
 	private String username;
 	private String content;
 	private String intro;
@@ -42,7 +43,6 @@ public class Chatbot
 		buildMovieList();
 		
 		buildCuteAnimals();
-		
 		
 		
 	}
@@ -222,9 +222,15 @@ public class Chatbot
 	public boolean shoppingListChecker(String shoppingItem)
 	{
 		boolean response = false;
-		if(!shoppingItem.equalsIgnoreCase("slug bait")) {
-			response = true;
+		//Loop through
+		for(String item : shoppingList) {
+			//Check
+			if(shoppingItem.contains(item)) {
+				response = true;
+				break;
+			}
 		}
+		
 		return response;
 	}
 	

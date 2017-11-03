@@ -112,6 +112,8 @@ public class ChatbotTest
 		assertFalse("Gross, I don't shop for that", testedChatbot.shoppingListChecker("slug bait"));
 		assertTrue("Veggies are yummy", testedChatbot.shoppingListChecker("veggies"));
 		assertTrue("I like to eat snacks", testedChatbot.shoppingListChecker("snacks"));
+		
+		
 	}
 
 	@Test
