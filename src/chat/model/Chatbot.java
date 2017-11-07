@@ -28,7 +28,7 @@ public class Chatbot
 		this.currentTime = LocalTime.now();
 		this.questions = new String[10];
 		this.username = username;
-		this.content = "";
+		this.content = "I love money";
 		this.intro = "";
 		this.topics = new String[4];
 		this.verbs = new String[4];
@@ -169,6 +169,186 @@ public class Chatbot
 		
 		boolean isHTML = false;
 		
+		input = input.replace(" ", "");
+		String[] htmlArray = input.split("");
+		
+		//These are if it has the "<",">" and "<","/",">"
+		boolean hasOpeningOpenBracket = false;
+		
+		boolean hasHtmlElementOpen = false;
+		
+		
+		boolean hasEquals = false;
+		
+		boolean hasOpenQuote = false;
+		boolean hasCloseQuote = false;
+		
+		
+		
+		
+		boolean hasOpeningCloseBracket = false;
+		boolean hasEndingOpenBracket = false;
+		boolean hasEndingSlash = false;
+		
+		boolean hasHtmlElementClose = false;
+		
+		boolean hasEndingCloseBracket = false;
+		
+		boolean cancel = false;
+		
+		
+		//Check if it has any equals, then check if they all have "" in that section
+
+		
+		for(int i = 0; i < htmlArray.length; i++) {
+			
+			if(!cancel) {
+			
+				//First check if it has an opening bracket
+				if(!hasOpeningOpenBracket) {
+					
+					if(htmlArray[i].equalsIgnoreCase("<")) {
+						hasOpeningOpenBracket = true;
+					}
+					
+					
+				}
+				
+				else if(hasOpeningOpenBracket) {
+					
+					//CHECK IF HTML ELEMENT IS INSIDE and Equals has already been defined
+					
+					if(!hasHtmlElementOpen && !hasEquals) {
+						if(!htmlArray[i].equalsIgnoreCase(">") || !htmlArray[i].equalsIgnoreCase("=") || !htmlArray[i].equalsIgnoreCase("/")) {
+							hasHtmlElementOpen = true;
+						}else {
+							//This tag is invalid
+							cancel = true;
+						}
+					}
+					//IF IT DOES HAVE A HTML ELEMENT
+					else if(hasHtmlElementOpen) {
+						//IF it has an equal sign in it
+						if(htmlArray[i].equalsIgnoreCase("=") && !hasOpeningCloseBracket) {
+							//So if the HTML element has not been closed yet
+							if(!hasEquals) {
+								hasEquals = true;
+							}
+						}
+						//If it has an equals sign in it and an opening/ending quote
+						else if(htmlArray[i].equalsIgnoreCase("\"") && hasEquals && !hasOpeningCloseBracket) {
+							//If it does have an open quote
+							if(!hasOpenQuote) {
+								hasOpenQuote = true;
+							}
+							//If it has an open quote but doesn't have a close quote
+							else if(!hasCloseQuote) {
+								hasCloseQuote = true;
+							}
+							 
+						}
+						
+						//If it has a closing
+						else if(htmlArray[i].equalsIgnoreCase(">") && !hasOpeningCloseBracket) {
+							hasOpeningCloseBracket = true;
+						}
+						
+						
+						//Finally if it does have a close bracket
+						if(hasOpeningCloseBracket) {
+							
+							//If it does not have a close bracket
+							if(!hasEndingOpenBracket) {
+								//Check if it does have an Opening Close Bracket
+								if(htmlArray[i].equalsIgnoreCase("<")) {
+									hasEndingOpenBracket = true;
+								}
+							}
+							//If it does have a close Bracket Opening
+							else if(hasEndingOpenBracket) {
+								
+								//if it doesn't have a slash check
+								if(!hasEndingSlash && !hasHtmlElementClose) {
+									if(htmlArray[i].equalsIgnoreCase("/")) {
+										hasEndingSlash = true;
+									}
+								}
+								
+								//If it does have an ending slash
+								else if(hasEndingSlash) {
+									//If it doesnt have the html element close
+									if(!hasHtmlElementClose) {
+										
+										//Check if it has the html element
+										if(!htmlArray[i].equalsIgnoreCase(">")) {
+											hasHtmlElementClose = true;
+										}
+									}
+									
+									//If it does have the html element close
+									else if(hasHtmlElementClose) {
+										//Check for close
+										if(htmlArray[i].equalsIgnoreCase(">")) {
+											hasEndingCloseBracket = true;
+										}
+									}
+									
+								}
+								
+							}
+							
+							
+							
+							
+							
+						}
+						
+						
+						
+						
+						
+					}
+					
+					
+				}
+			
+			}
+	
+			
+		}
+		
+		if(hasOpeningOpenBracket) {
+			System.out.println("1");
+			if(hasHtmlElementOpen) {
+				System.out.println("2");
+				if(hasOpeningCloseBracket) {
+					System.out.println("3");
+					if(hasEndingOpenBracket) {
+						System.out.println("4");
+						if(hasEndingSlash) {
+							System.out.println("5");
+							if(hasHtmlElementClose) {
+								System.out.println("6");
+								if(hasEndingCloseBracket) {
+									System.out.println("7");
+									
+									if(hasEquals) {
+										if(hasOpenQuote) {
+											if(hasCloseQuote) {
+												isHTML = true;
+											}
+										}
+									}else {
+										isHTML = true;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
 		
 		
 		
@@ -179,10 +359,12 @@ public class Chatbot
 	{
 		boolean response = false;
 		if(input != null) {
+			//@ <- in @@@@h2
 			if(input.startsWith("@")) {
 				response = true;
 				int count = 0;
 				char symbol = '@';
+				//Count Symbol
 				for(int i = 0; i < input.length(); i++) {
 					
 					if(input.charAt(i) == symbol) {
@@ -190,6 +372,7 @@ public class Chatbot
 					}
 				}
 				
+				//If it does
 				if(count > 1) {
 					System.out.print(count);
 					response = false;
@@ -204,7 +387,14 @@ public class Chatbot
 	public boolean contentChecker(String contentCheck)
 	{
 		boolean response = false;
-		
+		if(contentCheck != null) {
+			
+			String[] contentArray = contentCheck.split(" ");
+			
+			if(contentArray.length > 1) {
+				response = true;
+			}
+		}
 		return response;
 	}
 	
