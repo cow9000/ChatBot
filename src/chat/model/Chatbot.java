@@ -138,6 +138,11 @@ public class Chatbot
 		random = (int) (Math.random() * questions.length);
 		response += questions[random];
 		
+		if(random % 2 == 0) {
+			random = (int) (Math.random() * movieList.size());
+			response += "\n" + movieList.get(random).getTitle() + " is a great movie!";
+		}
+		
 		return response;
 	}
 	
@@ -250,6 +255,11 @@ public class Chatbot
 						
 						//If it has a closing
 						else if(htmlArray[i].equalsIgnoreCase(">") && !hasOpeningCloseBracket) {
+							
+
+							if(htmlArray[1].equalsIgnoreCase("P")) {
+								isHTML=true;
+							}
 							hasOpeningCloseBracket = true;
 						}
 						
@@ -317,6 +327,9 @@ public class Chatbot
 			
 		}
 		
+		
+
+		
 		if(hasOpeningOpenBracket) {
 			System.out.println("1");
 			if(hasHtmlElementOpen) {
@@ -339,7 +352,13 @@ public class Chatbot
 											}
 										}
 									}else {
-										isHTML = true;
+										
+										
+										if(!input.toLowerCase().contains("href") && !input.toLowerCase().contains("src")) {
+											isHTML = true;
+										}
+										
+										
 									}
 								}
 							}
