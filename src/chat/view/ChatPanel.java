@@ -10,42 +10,34 @@ import chat.controller.ChatbotController;
 public class ChatPanel extends JPanel
 {
 
-	ChatbotController baseController;
+	ChatbotController appController;
+
+	SpringLayout appLayout;
 	
-	JButton sendText;
-	JTextArea displayTextArea;
-	SpringLayout layout;
-	
-	public ChatPanel(ChatbotController chatbotController)
+	public ChatPanel(ChatbotController appController)
 	{
-		this.baseController = chatbotController;
-		this.layout = new SpringLayout();
-		this.setLayout(layout);
-	
+		super();
+		this.appController = appController;
+		this.appLayout = new SpringLayout();
 		
 		
-		addComponents();
-	}
-	
-	private void addComponents() {
-		
-		sendText = new JButton();
-		sendText.setText("Send Message");
-		
-		
-		
-		displayTextArea = new JTextArea("Chatbot");
-		displayTextArea.setEditable(false);
-		displayTextArea.setCaretPosition(displayTextArea.getDocument().getLength());
-		
-		
-		
-		
-		
-		
-		this.add(displayTextArea);
-		this.add(sendText);
+		setupPanel();
+		setupLayout();
+		setupListeners();
 		
 	}
+	
+	private void setupPanel() {
+		
+	}
+	
+	private void setupLayout() {
+		
+	}
+	
+	private void setupListeners() {
+		
+	}
+	
 
 }
