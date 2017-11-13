@@ -1,6 +1,5 @@
 package chat.view;
 
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -16,29 +15,16 @@ public class ChatFrame extends JFrame
 	
 	public ChatFrame(ChatbotController chatbotController)
 	{
+		
+		super();
 		this.baseController = chatbotController;
 		this.panel = new ChatPanel(chatbotController);
 
-		setSettings();
+		setupFrame();
 	}
 	
-	private void setSettings() {
-		this.setContentPane(panel);
+	private void setupFrame() {
 		
-		this.setTitle("Chatbot");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		this.setMinimumSize(getSize());
-		this.setSize(getPreferredSize());
-		
-		this.setResizable(false);
-		this.applyComponentOrientation(
-			    ComponentOrientation.getOrientation(
-			            panel.getLocale()));
-		this.setVisible(true);
-		
-		
-		pack();
 	}
 
 	

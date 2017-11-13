@@ -43,7 +43,7 @@ public class Chatbot
 		buildMovieList();
 		
 		buildCuteAnimals();
-		
+		System.out.println("THIS HTML TAG IS A GOOD TAG - " + htmlTagChecker("<p class=\"\" id=\"\"></p>"));
 		
 	}
 	
@@ -99,6 +99,8 @@ public class Chatbot
 		shoppingList.add("money");
 		shoppingList.add("ham");
 		shoppingList.add("turkey");
+		
+		
 	}
 	
 	private void buildCuteAnimals()
@@ -123,7 +125,10 @@ public class Chatbot
 		questions[9] = "What is wrong with you?";
 
 	}
-	
+	/**
+	 * Builds Chatbots response using randomized numbers and arrays
+	 * @return Chatbots response is built by predefined arrays
+	 */
 	private String buildChatbotResponse() {
 		String response = "I ";
 		
@@ -147,7 +152,11 @@ public class Chatbot
 		
 		return response;
 	}
-	
+	/**
+	 * This method gets input from the user and then returns a response from the bot
+	 * @param input User input in String format
+	 * @return The Chatbots response is calculated through buildChatbotResponse
+	 */
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "";
@@ -179,6 +188,15 @@ public class Chatbot
 		input = input.replace(" ", "");
 		String[] htmlArray = input.split("");
 		
+		List<String> htmlElementEquals = new ArrayList<String>();
+		htmlElementEquals.add("href");
+		htmlElementEquals.add("src");
+		htmlElementEquals.add("style");
+		htmlElementEquals.add("id");
+		htmlElementEquals.add("class");
+		htmlElementEquals.add("name");
+		
+		
 		//These are if it has the "<",">" and "<","/",">"
 		boolean hasOpeningOpenBracket = false;
 		
@@ -186,6 +204,9 @@ public class Chatbot
 		
 		
 		boolean hasEquals = false;
+		
+		int howManyEquals = 0;
+		
 		
 		boolean hasOpenQuote = false;
 		boolean hasCloseQuote = false;
@@ -235,12 +256,29 @@ public class Chatbot
 					}
 					//IF IT DOES HAVE A HTML ELEMENT
 					else if(hasHtmlElementOpen) {
+						
+						
 						//IF it has an equal sign in it
 						if(htmlArray[i].equalsIgnoreCase("=") && !hasOpeningCloseBracket) {
 							//So if the HTML element has not been closed yet
 							if(!hasEquals) {
 								hasEquals = true;
+								howManyEquals += 1;
+							} else if(hasEquals) {
+								
+								if(hasOpenQuote && hasCloseQuote) {
+									howManyEquals += 1;
+									
+									hasOpenQuote = false;
+									hasCloseQuote = false;
+									
+								}
+								
+								
 							}
+							
+							
+							
 						}
 						//If it has an equals sign in it and an opening/ending quote
 						else if(htmlArray[i].equalsIgnoreCase("\"") && hasEquals && !hasOpeningCloseBracket) {
@@ -261,6 +299,10 @@ public class Chatbot
 
 							if(htmlArray[1].equalsIgnoreCase("P")) {
 								isHTML=true;
+							}else if(htmlArray[1].equalsIgnoreCase("b")) {
+								if(htmlArray[2].equalsIgnoreCase("r")) {
+									isHTML=true;
+								}
 							}
 							hasOpeningCloseBracket = true;
 						}
@@ -351,13 +393,18 @@ public class Chatbot
 										if(hasOpenQuote) {
 											if(hasCloseQuote) {
 												isHTML = true;
+											}else {
+												isHTML = false;
 											}
+										}else {
+											isHTML = false;
 										}
 									}else {
-										
-										
-										if(!input.toLowerCase().contains("href") && !input.toLowerCase().contains("src")) {
-											isHTML = true;
+										isHTML = true;
+										for(int i = 0; i < htmlElementEquals.size(); i++) {
+											if(input.toLowerCase().contains(htmlElementEquals.get(i))) {
+												isHTML = false;
+											}
 										}
 										
 										
