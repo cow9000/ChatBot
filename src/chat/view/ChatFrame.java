@@ -9,7 +9,7 @@ import chat.controller.ChatbotController;
 public class ChatFrame extends JFrame 
 {
 	
-	ChatbotController baseController;
+	ChatbotController appController;
 	ChatPanel panel;
 	
 	
@@ -17,21 +17,26 @@ public class ChatFrame extends JFrame
 	{
 		
 		super();
-		this.baseController = chatbotController;
+		this.appController = chatbotController;
 		this.panel = new ChatPanel(chatbotController);
 
 		setupFrame();
 	}
 	
 	private void setupFrame() {
+		this.setContentPane(panel);
 		
+		this.setTitle("");
+		this.setSize(100,100);
+		
+		this.setVisible(true);
 	}
 
 	
 	
 	public ChatbotController getBaseController()
 	{
-		return baseController;
+		return appController;
 	}
 	
 	
