@@ -43,14 +43,14 @@ public class ChatFrame extends JFrame
 	
 	@Override
 	public Dimension getMinimumSize() {
-		Dimension size = new Dimension(800,800);
+		Dimension size = new Dimension(600,600);
 		return size;
 	}
 	
 	
 	@Override
 	public Dimension getPreferredSize() {
-		Dimension size = new Dimension(800,800);
+		Dimension size = new Dimension(600,600);
 		return size;
 	}
 	
