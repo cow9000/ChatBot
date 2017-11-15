@@ -27,7 +27,7 @@ public class ChatFrame extends JFrame
 		this.setContentPane(appPane);
 		
 		this.setResizable(false);
-		this.setTitle("");
+		this.setTitle("Chatbot 2017");
 		this.setSize(getPreferredSize());
 		
 		this.setVisible(true);

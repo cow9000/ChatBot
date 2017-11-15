@@ -13,15 +13,16 @@ public class ChatbotController
 	public ChatbotController(){
 		display = new PopupDisplay();
 		chatbot = new Chatbot("username goes here");
+		appFrame = new ChatFrame(this);
 	}
 	
 	public void start() {
 		String response = display.collectResponse("What do you want to talk about?");
 		
-		while(chatbot.lengthChecker(response) && !chatbot.quitChecker(response)) {
+		/*while(chatbot.lengthChecker(response) && !chatbot.quitChecker(response)) {
 			response = popupChat(response);
 			response = display.collectResponse(response);
-		}
+		}*/
 		
 	}
 
