@@ -28,7 +28,7 @@ public class ChatFrame extends JFrame
 		
 		this.setResizable(false);
 		this.setTitle("");
-		this.setSize(100,100);
+		this.setSize(getPreferredSize());
 		
 		this.setVisible(true);
 	}

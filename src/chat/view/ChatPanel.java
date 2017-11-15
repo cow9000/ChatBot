@@ -1,8 +1,6 @@
 package chat.view;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
 
 import chat.controller.ChatbotController;
@@ -28,7 +26,7 @@ public class ChatPanel extends JPanel
 	}
 	
 	private void setupPanel() {
-		
+		this.setLayout(appLayout);
 	}
 	
 	private void setupLayout() {
