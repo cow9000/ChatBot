@@ -1,5 +1,7 @@
 package chat.view;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -41,7 +43,11 @@ public class ChatPanel extends JPanel
 	}
 	
 	private void setupPanel() {
+		this.setBackground(Color.BLUE);
 		this.setLayout(appLayout);
+		this.add(chatButton);
+		this.add(inputField);
+		this.add(chatArea);
 	}
 	
 	private void setupLayout() {
