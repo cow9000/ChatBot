@@ -1,6 +1,8 @@
 package chat.view;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -22,7 +24,10 @@ public class ChatPanel extends JPanel
 	JTextArea chatArea;
 	
 	
-	
+	/**
+	 * This is the constructor for the ChatPanel, defines the GUI data members in here
+	 * @param appController appController links the appController into the Panel
+	 */
 	public ChatPanel(ChatbotController appController)
 	{
 		super();
@@ -46,7 +51,9 @@ public class ChatPanel extends JPanel
 		setupListeners();
 		
 	}
-	
+	/**
+	 * Sets up the Panel into the number of components I want.
+	 */
 	private void setupPanel() {
 		this.setBackground(Color.BLUE);
 		this.setLayout(appLayout);
@@ -57,7 +64,9 @@ public class ChatPanel extends JPanel
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
 	}
-	
+	/**
+	 * Sets up the positioning for the GUI components.
+	 */
 	private void setupLayout() {
 		appLayout.putConstraint(SpringLayout.NORTH, chatButton, 6, SpringLayout.SOUTH, chatArea);
 		appLayout.putConstraint(SpringLayout.EAST, chatButton, 0, SpringLayout.EAST, chatArea);
@@ -67,8 +76,23 @@ public class ChatPanel extends JPanel
 		appLayout.putConstraint(SpringLayout.NORTH, inputField, 0, SpringLayout.NORTH, chatButton);
 		appLayout.putConstraint(SpringLayout.WEST, inputField, 10, SpringLayout.WEST, chatArea);
 	}
-	
+	/**
+	 * 
+	 */
 	private void setupListeners() {
+		chatButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent click)
+			{
+				{
+					String userText = inputField.getText();
+					String displayText = appController.interactWithChatbot(userText);
+					chatArea.append(displayText);
+					inputField.setText("");
+				}
+			}
+
+		});
 		
 	}
 	
