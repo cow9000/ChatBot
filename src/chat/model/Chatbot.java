@@ -77,8 +77,8 @@ public class Chatbot
 	private void buildMovieList()
 	{
 		movieList.add(new Movie("Lord Of The Rings"));
-		movieList.add(new Movie("Lord Of The Rings"));
-		movieList.add(new Movie("Lord Of The Rings"));
+		movieList.add(new Movie("Spiderman"));
+		movieList.add(new Movie("Hidden Figures"));
 		movieList.add(new Movie("Lord Of The Rings"));
 		movieList.add(new Movie("Lord Of The Rings"));
 		movieList.add(new Movie("Lord Of The Rings"));

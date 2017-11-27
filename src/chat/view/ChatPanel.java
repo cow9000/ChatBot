@@ -20,6 +20,7 @@ public class ChatPanel extends JPanel
 	SpringLayout appLayout;
 	
 	JButton chatButton;
+	JButton checkerButton;
 	JTextField inputField;
 	JTextArea chatArea;
 	
@@ -37,11 +38,14 @@ public class ChatPanel extends JPanel
 		//Initalize GUI data members
 		this.appLayout = new SpringLayout();
 		this.chatButton = new JButton("Chat");
-		this.chatArea = new JTextArea(10,25);
+		this.checkerButton = new JButton("Check");
 
+		this.chatArea = new JTextArea(10,25);
+		
 
 		this.inputField = new JTextField(20);
-
+		appLayout.putConstraint(SpringLayout.WEST, inputField, 0, SpringLayout.WEST, chatArea);
+		
  
 
 		
@@ -60,7 +64,7 @@ public class ChatPanel extends JPanel
 		this.add(chatButton);
 		this.add(inputField);
 		this.add(chatArea);
-		
+		this.add(checkerButton);
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
 	}
@@ -68,13 +72,14 @@ public class ChatPanel extends JPanel
 	 * Sets up the positioning for the GUI components.
 	 */
 	private void setupLayout() {
-		appLayout.putConstraint(SpringLayout.NORTH, chatButton, 6, SpringLayout.SOUTH, chatArea);
-		appLayout.putConstraint(SpringLayout.EAST, chatButton, 0, SpringLayout.EAST, chatArea);
 		appLayout.putConstraint(SpringLayout.NORTH, chatArea, 20, SpringLayout.NORTH, this);
 		appLayout.putConstraint(SpringLayout.EAST, chatArea, -25, SpringLayout.EAST, this);
 		appLayout.putConstraint(SpringLayout.WEST, chatArea, 25, SpringLayout.WEST, this);
 		appLayout.putConstraint(SpringLayout.NORTH, inputField, 0, SpringLayout.NORTH, chatButton);
-		appLayout.putConstraint(SpringLayout.WEST, inputField, 10, SpringLayout.WEST, chatArea);
+		appLayout.putConstraint(SpringLayout.SOUTH, chatButton, -10, SpringLayout.SOUTH, this);
+		appLayout.putConstraint(SpringLayout.EAST, chatButton, 0, SpringLayout.EAST, this);
+		appLayout.putConstraint(SpringLayout.NORTH, checkerButton, 0, SpringLayout.NORTH, chatButton);
+		appLayout.putConstraint(SpringLayout.EAST, checkerButton, -6, SpringLayout.WEST, chatButton);
 	}
 	/**
 	 * 
@@ -92,6 +97,16 @@ public class ChatPanel extends JPanel
 				}
 			}
 
+		});
+		
+		checkerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent click) {
+				String userText = inputField.getText();
+				String displayText =  appController.useCheckers(userText);
+				chatArea.append(displayText);
+				inputField.setText("");
+			}
+				
 		});
 		
 	}

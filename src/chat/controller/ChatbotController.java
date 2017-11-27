@@ -85,4 +85,20 @@ public class ChatbotController
 	{
 		return appFrame;
 	}
+	
+	public String useCheckers(String text) {
+		String response = "";
+		
+		if(chatbot.contentChecker(text)) {
+			response += "This text matches the special content\n";
+		}
+		
+		if(chatbot.cuteAnimalMemeChecker(text)) {
+			response += "";
+		}
+		
+		return response;
+	}
+	
+	
 }
