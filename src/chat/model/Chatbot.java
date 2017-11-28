@@ -43,7 +43,6 @@ public class Chatbot
 		buildMovieList();
 		
 		buildCuteAnimals();
-		System.out.println("THIS HTML TAG IS A GOOD TAG - " + htmlTagChecker("<p class=\"\" id=\"\"></p>"));
 		
 	}
 	
@@ -200,9 +199,79 @@ public class Chatbot
 	
 	public boolean htmlTagChecker(String input)
 	{
-		
+		//Yeah...... Kinda overcomplicated this.
 		boolean isHTML = false;
 		
+		
+		input = input.toLowerCase();
+		
+		String firstChunkOfHtmlCode = "";
+		String secondChunkOfHtmlCode = "";
+		
+		//Check if code has a close Bracket.
+		int indexOfFirstCloseBracket = input.indexOf(">");
+		int indexOfLastOpenBracket = -1;
+		
+		//If it does pop it out from input
+		if(indexOfFirstCloseBracket != -1) {
+			firstChunkOfHtmlCode = input.substring(0, indexOfFirstCloseBracket + 1);
+			
+			
+			
+			
+			
+			
+			//Remove everything from the beginning <Whatever>
+			input = input.substring(indexOfFirstCloseBracket + 1, input.length());
+			
+			indexOfLastOpenBracket = input.lastIndexOf("<");
+			
+			if(indexOfLastOpenBracket != -1) {
+				secondChunkOfHtmlCode = input.substring(indexOfLastOpenBracket, input.lastIndexOf(">") + 1);
+				System.out.println("First Chunk  - " + firstChunkOfHtmlCode);
+				System.out.println("Second Chunk - " + secondChunkOfHtmlCode);
+				
+				
+				
+			}
+			
+			
+			//NOW YOU HAVE THE TWO PARTS OF CODE CHECK IF THE FIRST CHUNK IS BIGGER THEN 0
+			if(firstChunkOfHtmlCode.length() > 0) {
+				
+				
+				//CHECK IF IT HAS HREF
+				//IF IT DOES SUBSTRING =""
+				//CHECK IF VALID
+				//BOOM
+				//CHECK END
+				
+				
+				
+				//THEN CHECK IF THE LAST CHUNK OF CODE IS VALID
+				if(secondChunkOfHtmlCode.length() > 0) {
+					
+					
+					
+					
+					
+				}else if(firstChunkOfHtmlCode.contains("br") || firstChunkOfHtmlCode.contains("p")){
+					return true;
+				}else {
+					return false;
+				}
+				
+				
+			}else {
+				return false;
+			}
+			
+			
+		}
+		
+		
+		
+		/*input = input.toLowerCase();
 		input = input.replace(" ", "");
 		String[] htmlArray = input.split("");
 		
@@ -433,7 +502,7 @@ public class Chatbot
 					}
 				}
 			}
-		}
+		}*/
 		
 		
 		

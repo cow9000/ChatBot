@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -15,15 +16,15 @@ import chat.controller.ChatbotController;
 public class ChatPanel extends JPanel
 {
 
-	ChatbotController appController;
+	private ChatbotController appController;
 
-	SpringLayout appLayout;
+	private SpringLayout appLayout;
 	
-	JButton chatButton;
-	JButton checkerButton;
-	JTextField inputField;
-	JTextArea chatArea;
-	
+	private JButton chatButton;
+	private JButton checkerButton;
+	private JTextField inputField;
+	private JTextArea chatArea;
+	private JLabel infoLabel;
 	
 	/**
 	 * This is the constructor for the ChatPanel, defines the GUI data members in here
@@ -39,12 +40,11 @@ public class ChatPanel extends JPanel
 		this.appLayout = new SpringLayout();
 		this.chatButton = new JButton("Chat");
 		this.checkerButton = new JButton("Check");
-
+		this.infoLabel = new JLabel("Type to chat with the chatbot");
 		this.chatArea = new JTextArea(10,25);
 		
 
 		this.inputField = new JTextField(20);
-		appLayout.putConstraint(SpringLayout.WEST, inputField, 0, SpringLayout.WEST, chatArea);
 		
  
 
@@ -65,6 +65,7 @@ public class ChatPanel extends JPanel
 		this.add(inputField);
 		this.add(chatArea);
 		this.add(checkerButton);
+		this.add(infoLabel);
 		chatArea.setEnabled(false);
 		chatArea.setEditable(false);
 	}
@@ -80,6 +81,9 @@ public class ChatPanel extends JPanel
 		appLayout.putConstraint(SpringLayout.EAST, chatButton, 0, SpringLayout.EAST, this);
 		appLayout.putConstraint(SpringLayout.NORTH, checkerButton, 0, SpringLayout.NORTH, chatButton);
 		appLayout.putConstraint(SpringLayout.EAST, checkerButton, -6, SpringLayout.WEST, chatButton);
+		appLayout.putConstraint(SpringLayout.WEST, infoLabel, 0, SpringLayout.WEST, inputField);
+		appLayout.putConstraint(SpringLayout.SOUTH, infoLabel, -6, SpringLayout.NORTH, inputField);
+		appLayout.putConstraint(SpringLayout.WEST, inputField, 0, SpringLayout.WEST, chatArea);
 	}
 	/**
 	 * 
