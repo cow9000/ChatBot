@@ -90,7 +90,7 @@ public class Chatbot
 		shoppingList.add("veggies");
 		shoppingList.add("protein");
 		shoppingList.add("garbage");
-		shoppingList.add("CHOCOLATE");
+		shoppingList.add("eggs");
 		shoppingList.add("Tuna");
 		shoppingList.add("garbage");
 		shoppingList.add("monkies");
@@ -98,7 +98,12 @@ public class Chatbot
 		shoppingList.add("money");
 		shoppingList.add("ham");
 		shoppingList.add("turkey");
-		
+		shoppingList.add("hot peppers");
+		shoppingList.add("onions");
+		shoppingList.add("bagel");
+		shoppingList.add("crunchy peanut butter");
+		shoppingList.add("hot sauce");
+		shoppingList.add("juice");
 		
 	}
 	
@@ -212,6 +217,8 @@ public class Chatbot
 		int indexOfFirstCloseBracket = input.indexOf(">");
 		int indexOfLastOpenBracket = -1;
 		
+		int indexOfEqualSigns = 0;
+		
 		//If it does pop it out from input
 		if(indexOfFirstCloseBracket != -1) {
 			firstChunkOfHtmlCode = input.substring(0, indexOfFirstCloseBracket + 1);
@@ -240,8 +247,7 @@ public class Chatbot
 			if(firstChunkOfHtmlCode.length() > 0) {
 				
 				
-				//CHECK IF IT HAS HREF
-				//IF IT DOES SUBSTRING =""
+				//CHECK IF IT HAS =
 				//CHECK IF VALID
 				//BOOM
 				//CHECK END
@@ -252,6 +258,8 @@ public class Chatbot
 				if(secondChunkOfHtmlCode.length() > 0) {
 					
 					
+					
+				
 					
 					
 					
