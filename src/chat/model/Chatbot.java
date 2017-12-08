@@ -51,6 +51,11 @@ public class Chatbot
 		return response;
 	}
 	
+	/**
+	 * 
+	 * Build the verbs array for the chatbot to use
+	 * 
+	 */
 	private void buildVerbs() {
 		verbs[0] = "like";
 		verbs[1] = "dislike";
@@ -58,12 +63,24 @@ public class Chatbot
 		verbs[3] = "am thinking about";
 	}
 	
+	/**
+	 * 
+	 * Build the topics array for the chatbot to use
+	 * 
+	 */
+	
 	public void buildTopics() {
 		topics[0] = "John Cena";
 		topics[1] = "Harry Potter";
 		topics[2] = "Donald Trump";
 		topics[3] = "Tuna";
 	}
+	
+	/**
+	 * 
+	 * Build the followUps array for the chatbot to use
+	 * 
+	 */
 	
 	public void buildFollowups() {
 		followUps[0] = "";
@@ -73,6 +90,12 @@ public class Chatbot
 		followUps[4] = "";
 	}
 
+	/**
+	 * 
+	 * Build the movieList ArrayList for the chatbot to use
+	 * 
+	 */
+	
 	private void buildMovieList()
 	{
 		movieList.add(new Movie("Lord Of The Rings"));
@@ -83,6 +106,12 @@ public class Chatbot
 		movieList.add(new Movie("Lord Of The Rings"));
 		movieList.add(new Movie("Lord Of The Rings"));
 	}
+	
+	/**
+	 * 
+	 * Build the shoppingList ArrayList for the chatbot to use
+	 * 
+	 */
 	
 	private void buildShoppingList()
 	{
@@ -107,6 +136,12 @@ public class Chatbot
 		
 	}
 	
+	/**
+	 * 
+	 * Build the cuteAnimalMemes ArrayList for the chatbot to use
+	 * 
+	 */
+	
 	private void buildCuteAnimals()
 	{
 		cuteAnimalMemes.add("pupper");
@@ -114,6 +149,12 @@ public class Chatbot
 		cuteAnimalMemes.add("kittie");
 		cuteAnimalMemes.add("floofer");
 	}
+	
+	/**
+	 * 
+	 * Build the questions array for the chatbot to use
+	 * 
+	 */
 	
 	private void buildQuestions()
 	{
@@ -179,9 +220,14 @@ public class Chatbot
 	 * @param input User input in String format
 	 * @return The Chatbots response is calculated through buildChatbotResponse
 	 */
+	
 	public String processConversation(String input)
 	{
 		String chatbotResponse = "";
+		
+		currentTime = LocalTime.now();
+		
+		chatbotResponse+= currentTime.getHour() + ":" + currentTime.getMinute() + " ";
 		chatbotResponse += "You said:" + "\n" + input + "\n";
 		
 		chatbotResponse += buildChatbotResponse();
@@ -189,6 +235,12 @@ public class Chatbot
 		return chatbotResponse;
 	}
 	
+	
+	/**
+	 * Checks the length of the user input
+	 * @param input User input that user sends
+	 * @return True if the user input is longer then 2 characters.
+	 */
 	public boolean lengthChecker(String input)
 	{
 		boolean longEnough = false;
@@ -201,12 +253,24 @@ public class Chatbot
 		
 		return longEnough;
 	}
-	
+	/**
+	 * 
+	 * This method will check if the string is a valid HTML tag
+	 * @param input User input, or HTML tag to be checked
+	 * @return returns true if the input is a valid HTML tag.
+	 */
 	public boolean htmlTagChecker(String input)
 	{
 		//Yeah...... Kinda overcomplicated this.
 		boolean isHTML = false;
 		
+		List<String> htmlElementEquals = new ArrayList<String>();
+		htmlElementEquals.add("href");
+		htmlElementEquals.add("src");
+		htmlElementEquals.add("style");
+		htmlElementEquals.add("id");
+		htmlElementEquals.add("class");
+		htmlElementEquals.add("name");
 		
 		input = input.toLowerCase();
 		
@@ -217,7 +281,7 @@ public class Chatbot
 		int indexOfFirstCloseBracket = input.indexOf(">");
 		int indexOfLastOpenBracket = -1;
 		
-		int indexOfEqualSigns = 0;
+		boolean doesntHave = false;
 		
 		//If it does pop it out from input
 		if(indexOfFirstCloseBracket != -1) {
@@ -246,11 +310,19 @@ public class Chatbot
 			//NOW YOU HAVE THE TWO PARTS OF CODE CHECK IF THE FIRST CHUNK IS BIGGER THEN 0
 			if(firstChunkOfHtmlCode.length() > 0) {
 				
-				
-				//CHECK IF IT HAS =
-				//CHECK IF VALID
-				//BOOM
-				//CHECK END
+				for(String htmlAttribute : htmlElementEquals) {
+					if(firstChunkOfHtmlCode.contains(htmlAttribute)) {
+						
+						if(firstChunkOfHtmlCode.indexOf("=") == -1) {
+							doesntHave = true;
+						}
+						
+						if(firstChunkOfHtmlCode.indexOf("\"") != firstChunkOfHtmlCode.lastIndexOf("\"")) {
+							
+							isHTML = true;
+						}
+					}
+				}
 				
 				
 				
@@ -259,22 +331,26 @@ public class Chatbot
 					
 					
 					
-				
+					isHTML = true;
 					
 					
 					
 				}else if(firstChunkOfHtmlCode.contains("br") || firstChunkOfHtmlCode.contains("p")){
-					return true;
+					isHTML = true;
 				}else {
-					return false;
+					isHTML = false;
 				}
 				
 				
 			}else {
-				return false;
+				isHTML = false;
 			}
 			
 			
+		}
+		
+		if(doesntHave == true) {
+			isHTML = false;
 		}
 		
 		
@@ -517,7 +593,11 @@ public class Chatbot
 		
 		return isHTML;
 	}
-	
+	/**
+	 * Checks if the username is a valid Twitter username
+	 * @param input user input
+	 * @return true if the username is a valid Twitter username
+	 */
 	public boolean userNameChecker(String input)
 	{
 		boolean response = false;
@@ -546,7 +626,11 @@ public class Chatbot
 		}
 		return response;
 	}
-	
+	/**
+	 * Checks if the content is valid
+	 * @param contentCheck user input
+	 * @return returns true if the content is valid
+	 */
 	public boolean contentChecker(String contentCheck)
 	{
 		boolean response = false;
@@ -560,18 +644,26 @@ public class Chatbot
 		}
 		return response;
 	}
-	
+	/**
+	 * Checks if the input contains the Animal
+	 * @param input User Input
+	 * @return returns true if the input has an animal
+	 */
 	public boolean cuteAnimalMemeChecker(String input)
 	{
 		boolean response = false;
 		for(String meme : cuteAnimalMemes) {
-			if(meme.equalsIgnoreCase(input)) {
+			if(input.contains(meme)) {
 				response = true;
 			}
 		}
 		return response;
 	}
-	
+	/**
+	 * Checks the shopping List for shoppingItem
+	 * @param shoppingItem checks if the item is in the shopping list
+	 * @return return true if the shoppingItem is in the shopping list
+	 */
 	public boolean shoppingListChecker(String shoppingItem)
 	{
 		boolean response = false;
@@ -586,7 +678,11 @@ public class Chatbot
 		
 		return response;
 	}
-	
+	/**
+	 * Checks if the title is a valid title
+	 * @param title checking if title is valid
+	 * @return returns true if title checker is valid
+	 */
 	public boolean movieTitleChecker(String title)
 	{
 		boolean response = false;
@@ -599,7 +695,11 @@ public class Chatbot
 		}
 		return response;
 	}
-	
+	/**
+	 * Checks if the movie Genre is valid
+	 * @param genre genre to be checked
+	 * @return returns true if it is a valid genre
+	 */
 	public boolean movieGenreChecker(String genre)
 	{
 		boolean response = false;
@@ -612,7 +712,11 @@ public class Chatbot
 		}
 		return response;
 	}
-
+	/**
+	 * Checks if the quitChecker is valid
+	 * @param exitString
+	 * @return
+	 */
 	public boolean quitChecker(String exitString)
 	{
 		boolean response = false;
@@ -623,7 +727,11 @@ public class Chatbot
 		}
 		return response;
 	}
-
+	/**
+	 * Checks if the user input is keyboard mash or not
+	 * @param sample user input
+	 * @return returns true if the user input is mash.
+	 */
 	public boolean keyboardMashChecker(String sample)
 	{
 		boolean response = false;

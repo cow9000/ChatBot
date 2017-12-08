@@ -26,6 +26,7 @@ public class ChatPanel extends JPanel
 	private JTextField inputField;
 	private JTextArea chatArea;
 	private JLabel infoLabel;
+	private JLabel chatLabel;
 	
 	private JScrollPane chatScrollPane;
 	
@@ -44,6 +45,7 @@ public class ChatPanel extends JPanel
 		this.chatButton = new JButton("Chat");
 		this.checkerButton = new JButton("Check");
 		this.infoLabel = new JLabel("Type to chat with the chatbot");
+		this.chatLabel = new JLabel("Press Enter or click \"" + this.chatButton.getText() + "\"");
 		this.chatArea = new JTextArea(10,25);
 		
 		
@@ -63,7 +65,7 @@ public class ChatPanel extends JPanel
 	
 	
 	/**
-	 * 
+	 * Sets up the scroll pane for the Chat Area
 	 */
 	private void setupScrollPane() {
 		chatScrollPane.setViewportView(chatArea);
@@ -83,6 +85,7 @@ public class ChatPanel extends JPanel
 		this.add(chatButton);
 		this.add(inputField);
 		this.add(chatScrollPane);
+		this.add(chatLabel);
 		this.add(checkerButton);
 		this.add(infoLabel);
 		chatArea.setEnabled(false);
@@ -92,6 +95,10 @@ public class ChatPanel extends JPanel
 	 * Sets up the positioning for the GUI components.
 	 */
 	private void setupLayout() {
+		appLayout.putConstraint(SpringLayout.SOUTH, infoLabel, -6, SpringLayout.NORTH, chatLabel);
+		appLayout.putConstraint(SpringLayout.WEST, infoLabel, 0, SpringLayout.WEST, inputField);
+		appLayout.putConstraint(SpringLayout.WEST, chatLabel, 0, SpringLayout.WEST, inputField);
+		appLayout.putConstraint(SpringLayout.SOUTH, chatLabel, -6, SpringLayout.NORTH, inputField);
 		appLayout.putConstraint(SpringLayout.NORTH, chatScrollPane, 20, SpringLayout.NORTH, this);
 		appLayout.putConstraint(SpringLayout.EAST, chatScrollPane, -25, SpringLayout.EAST, this);
 		appLayout.putConstraint(SpringLayout.WEST, chatScrollPane, 25, SpringLayout.WEST, this);
@@ -100,12 +107,10 @@ public class ChatPanel extends JPanel
 		appLayout.putConstraint(SpringLayout.EAST, chatButton, 0, SpringLayout.EAST, this);
 		appLayout.putConstraint(SpringLayout.NORTH, checkerButton, 0, SpringLayout.NORTH, chatButton);
 		appLayout.putConstraint(SpringLayout.EAST, checkerButton, -6, SpringLayout.WEST, chatButton);
-		appLayout.putConstraint(SpringLayout.WEST, infoLabel, 0, SpringLayout.WEST, inputField);
-		appLayout.putConstraint(SpringLayout.SOUTH, infoLabel, -6, SpringLayout.NORTH, inputField);
 		appLayout.putConstraint(SpringLayout.WEST, inputField, 0, SpringLayout.WEST, chatScrollPane);
 	}
 	/**
-	 * 
+	 * Adds actions to components of the screen
 	 */
 	private void setupListeners() {
 		chatButton.addActionListener(new ActionListener() {
