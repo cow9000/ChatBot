@@ -54,7 +54,9 @@ public class ChatbotController
 		return message;
 	}
 	
-	
+	/**
+	 * Closes the chatbot application
+	 */
 	private void close() {
 		display.displayText("Peace mah homies");
 		System.exit(0);
@@ -71,21 +73,34 @@ public class ChatbotController
 		return chatbotSays;
 	}
 	
-
+	/**
+	 * Returns the chatBot object
+	 * @return chatbot object
+	 */
 	public Chatbot getChatbot()
 	{
 		return chatbot;
 	}
-	
+	/**
+	 * Get the popup display
+	 * @return returns display
+	 */
 	public PopupDisplay getDisplay() {
 		return display;
 	}
-	
+	/**
+	 * Return the chat frame for the GUI
+	 * @return return appFrame
+	 */
 	public ChatFrame getChatFrame()
 	{
 		return appFrame;
 	}
-	
+	/**
+	 * Uses the checkers in the chatBot application
+	 * @param text
+	 * @return
+	 */
 	public String useCheckers(String text) {
 		String response = "";
 		

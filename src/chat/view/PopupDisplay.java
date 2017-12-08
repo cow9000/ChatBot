@@ -14,7 +14,10 @@ public class PopupDisplay
 		icon = new ImageIcon(getClass().getResource("images/chatbot.png"));
 		windowTitle = "Chatbot says";
 	}
-	
+	/**
+	 * displays a text box with the selected message
+	 * @param message Message to be shown in the box
+	 */
 	public void displayText(String message) {
 		JOptionPane.showMessageDialog(null, message, windowTitle, JOptionPane.INFORMATION_MESSAGE, icon);
 	}
