@@ -71,9 +71,9 @@ public class Chatbot
 	
 	public void buildTopics() {
 		topics[0] = "John Cena";
-		topics[1] = "Harry Potter";
-		topics[2] = "Donald Trump";
-		topics[3] = "Tuna";
+		topics[1] = "adasffadga sfd sdf sdsdf ";
+		topics[2] = "adasffadga";
+		topics[3] = "Money";
 	}
 	
 	/**
@@ -635,6 +635,13 @@ public class Chatbot
 	{
 		boolean response = false;
 		if(contentCheck != null) {
+			
+			for(int i = 0; i < topics.length; i++) {
+				if(contentCheck.toLowerCase().contains(topics[i].toLowerCase())) {
+					return true;
+				}
+			}
+			
 			
 			String[] contentArray = contentCheck.split(" ");
 			
