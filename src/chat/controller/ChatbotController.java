@@ -23,7 +23,7 @@ public class ChatbotController
 	 * This is the constructor for the ChatbotController
 	 */
 	public ChatbotController(){
-		CTECTwitter myTwitter = new CTECTwitter(this);
+		myTwitter = new CTECTwitter(this);
 		display = new PopupDisplay();
 		chatbot = new Chatbot("username goes here");
 		appFrame = new ChatFrame(this);
