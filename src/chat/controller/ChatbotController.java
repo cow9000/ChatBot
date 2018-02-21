@@ -122,4 +122,8 @@ public class ChatbotController
 		display.displayText(error.getMessage());
 	}
 	
+	public void tweet(String text) {
+		myTwitter.sendTweet(text);
+	}
+	
 }
