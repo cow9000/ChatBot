@@ -47,7 +47,7 @@ public class IOController
 			File openFile = new File(filename);
 			Scanner fileScanner = new Scanner(openFile);
 			
-			String currentLine = fileScanner.nextLine();
+			String currentLine = "";
 			while(fileScanner.hasNextLine()) {
 				results += currentLine + "\n";
 				currentLine = fileScanner.nextLine();
