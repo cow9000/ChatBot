@@ -2,8 +2,10 @@ package chat.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import chat.controller.ChatbotController;
+import chat.controller.IOController;
 import twitter4j.Paging;
 import twitter4j.ResponseList;
 import twitter4j.Status;
@@ -48,6 +50,10 @@ public class CTECTwitter
 		
 		collectTweets(username);
 		turnStatusesToWords();
+		totalWordCount = tweetedWords.size();
+		
+		String[] boring = createIgnoredWordArray();
+		
 		
 		return mostCommon;
 	}
@@ -99,6 +105,31 @@ public class CTECTwitter
 		
 		
 		return scrubbedString;
+	}
+	
+	private String [] createIgnoredWordArray() {
+		String [] boringWords;
+		String fileText = IOController.loadFromFile(appController, "commonWords.txt");
+		int wordCount = 0;
+		
+		Scanner wordScanner = new Scanner(fileText);
+		
+		while(wordScanner.hasNextLine()) {
+			wordScanner.nextLine();
+			wordCount++;
+		}
+		
+		boringWords = new String[wordCount];
+		wordScanner.close();
+		
+		wordScanner = new Scanner(this.getClass().getResourceAsStream("data/CommonWords.txt"));
+		for(int i = 0; i < boringWords.length; i++) {
+			boringWords[i] = wordScanner.nextLine();
+		}
+		
+		wordScanner.close();
+		return boringWords;
+		
 	}
 	
 }
