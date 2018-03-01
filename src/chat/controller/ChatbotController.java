@@ -126,4 +126,8 @@ public class ChatbotController
 		myTwitter.sendTweet(text);
 	}
 	
+	public String search(String text) {
+		return myTwitter.getMostCommonWord(text);
+	}
+	
 }

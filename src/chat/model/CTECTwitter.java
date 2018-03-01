@@ -15,6 +15,8 @@ public class CTECTwitter
 	public CTECTwitter(ChatbotController appController) {
 		this.appController = appController;
 		this.chatbotTwitter = TwitterFactory.getSingleton();
+		
+		
 	}
 	
 	public void sendTweet(String textToTweet) {
