@@ -1,6 +1,7 @@
 package chat.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ public class CTECTwitter
 	private List<Status> searchedTweets;
 	private List<String> tweetedWords;
 	private long totalWordCount;
+	private HashMap<String,Integer> wordsAndCount;
 	
 	public CTECTwitter(ChatbotController appController) {
 		this.appController = appController;
@@ -54,8 +56,30 @@ public class CTECTwitter
 		
 		String[] boring = createIgnoredWordArray();
 		
+		trimTheBoringWords(boring);
+		removeBlanks();
+		generateWordCount();
 		
 		return mostCommon;
+	}
+	
+	private void removeBlanks() {
+		
+	}
+	
+	private void generateWordCount() {
+		
+	}
+	
+	private void trimTheBoringWords(String [] boringWords){
+		for(int index = tweetedWords.size() - 1; index >= 0; index--){
+			for(int removeIndex = 0; removeIndex < boringWords.length; removeIndex++) {
+				if(tweetedWords.get(index).equals(boringWords[removeIndex])){
+					tweetedWords.remove(index);
+					removeIndex = boringWords.length;
+				}
+			}
+		}
 	}
 	
 	private void collectTweets(String username) {
@@ -85,6 +109,7 @@ public class CTECTwitter
 	private void turnStatusesToWords() {
 		for(Status currentStatus : searchedTweets) {
 			String tweetText = currentStatus.getText();
+			tweetText = tweetText.replace("\n", " ");
 			String[] tweetWords = tweetText.split(" ");
 			for(int i = 0; i < tweetWords.length; i++) {
 				tweetedWords.add(removePunctuation(tweetWords[i]).trim());
